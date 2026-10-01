@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QualityTrack | Landing Page</title>
+    <title>QualityTrack | Gestión de producción y calidad</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -479,6 +479,7 @@
 
         <!-- Ambient Coordinate Grid -->
         <div class="loader-backdrop absolute inset-0 z-0 pointer-events-none"></div>
+        <div id="loader-3d-container" class="absolute inset-0 z-[1] opacity-40 pointer-events-none" aria-hidden="true"></div>
 
         <!-- Technical Corner Telemetry Badges -->
         <div class="absolute top-6 left-6 z-10 flex items-center gap-2 font-mono text-[10px] tracking-widest text-[#65c4c2]/80 uppercase">
@@ -486,10 +487,10 @@
             <span>QT-CORE // V2.6</span>
         </div>
         <div class="absolute top-6 right-6 z-10 font-mono text-[10px] tracking-widest text-[#F7F5F0]/50 uppercase hidden sm:block">
-            NORMA ISO 9001:2015 AUDIT SUITE
+            GESTIÓN DE ÓRDENES // MECANIZADO
         </div>
         <div class="absolute bottom-6 left-6 z-10 font-mono text-[10px] tracking-widest text-[#F7F5F0]/50 uppercase hidden sm:block">
-            METROLOGÍA DE PRECISIÓN // ONLINE
+            ÓRDENES DE TRABAJO // ACTIVAS
         </div>
         <div class="absolute bottom-6 right-6 z-10 font-mono text-[10px] tracking-widest text-[#65c4c2]/80 uppercase">
             ESTADO: CALIBRACIÓN ACTIVA
@@ -520,7 +521,7 @@
                 Quality<span class="text-[#65c4c2]">Track</span>
             </h2>
             <p class="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[#65c4c2]/85 mt-1">
-                Calidad y Auditoría Industrial
+                Producción y calidad en un solo flujo
             </p>
 
             <!-- Big Numerical Counter -->
@@ -532,15 +533,15 @@
             <!-- Dynamic Protocol Checklist -->
             <div class="w-full mb-4 flex flex-col gap-2 text-left bg-[#081619]/80 border border-[#65c4c2]/25 rounded-xl p-3.5 backdrop-blur-md shadow-lg">
                 <div id="loader-step-1" class="flex items-center justify-between text-[11px] font-mono text-[#F7F5F0]/80 transition-colors duration-200">
-                    <span>01. Calibración metrológica</span>
+                    <span>01. Solicitud y cotización</span>
                     <span class="loader-badge text-[#65c4c2] font-semibold">CARGANDO...</span>
                 </div>
                 <div id="loader-step-2" class="flex items-center justify-between text-[11px] font-mono text-[#F7F5F0]/40 transition-colors duration-200">
-                    <span>02. Verificación de normas ISO</span>
+                    <span>02. Seguimiento de producción</span>
                     <span class="loader-badge text-[#F7F5F0]/40">PENDIENTE</span>
                 </div>
                 <div id="loader-step-3" class="flex items-center justify-between text-[11px] font-mono text-[#F7F5F0]/40 transition-colors duration-200">
-                    <span>03. Despliegue de entorno</span>
+                    <span>03. Control de calidad</span>
                     <span class="loader-badge text-[#F7F5F0]/40">PENDIENTE</span>
                 </div>
             </div>
@@ -612,6 +613,10 @@
                         siteLoader.style.opacity = '0';
                     }
 
+                    if (window.moveHeroCoreToCard) {
+                        window.moveHeroCoreToCard();
+                    }
+
                     if (window.playHeroIntro) {
                         window.playHeroIntro();
                     } else {
@@ -671,18 +676,18 @@
                             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
                             <span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
                         </span>
-                        <span class="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">Plataforma Industrial 4.0</span>
+                        <span class="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">Gestión para pymes industriales</span>
                         <span class="text-text/30">•</span>
-                        <span class="font-sans text-[11px] font-medium tracking-wider text-text/75">Gestión de Calidad</span>
+                        <span class="font-sans text-[11px] font-medium tracking-wider text-text/75">Órdenes de mecanizado</span>
                     </div>
 
                     <h1 class="hero-title font-display text-4xl sm:text-6xl lg:text-[4.4rem] xl:text-[5rem] font-bold leading-[1.03] text-text tracking-tight">
-                        <span class="hero-title-mask block overflow-hidden"><span class="hero-title-line block">Procesos más sólidos.</span></span>
-                        <span class="hero-title-mask block overflow-hidden pb-2"><span class="hero-title-line block text-primary italic font-semibold">Decisiones con evidencia.</span></span>
+                        <span class="hero-title-mask block overflow-hidden"><span class="hero-title-line block">Del pedido al despacho.</span></span>
+                        <span class="hero-title-mask block overflow-hidden pb-2"><span class="hero-title-line block text-primary italic font-semibold">Toda la orden, visible.</span></span>
                     </h1>
 
                     <p class="hero-description mt-7 max-w-xl font-sans text-base leading-relaxed text-text/75 sm:text-lg">
-                        Estandariza cotizaciones, ejecuta auditorías trazables y transforma datos de planta en mejoras operativas continuas con precisión certificada.
+                        Centraliza solicitudes, planos, cotizaciones y fases de producción. Sigue cada trabajo hasta el control de calidad y el despacho, con su historial en un solo lugar.
                     </p>
 
                     <div class="hero-actions mt-9 flex flex-wrap items-center gap-4 sm:gap-6">
@@ -701,16 +706,16 @@
                     <!-- Live Telemetry KPI Indicators -->
                     <div class="hero-stats-row mt-12 grid grid-cols-3 gap-4 border-t border-text/10 pt-6">
                         <div>
-                            <p class="font-display text-2xl sm:text-3xl font-bold text-text">99.98<span class="text-primary text-lg sm:text-xl font-semibold">%</span></p>
-                            <p class="mt-0.5 font-sans text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-text/60">Precisión en datos</p>
+                            <p class="font-display text-2xl sm:text-3xl font-bold text-text">5</p>
+                            <p class="mt-0.5 font-sans text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-text/60">Roles conectados</p>
                         </div>
                         <div>
-                            <p class="font-display text-2xl sm:text-3xl font-bold text-text">&lt; 15<span class="text-primary text-lg sm:text-xl font-semibold">m</span></p>
-                            <p class="mt-0.5 font-sans text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-text/60">Tiempo de auditoría</p>
+                            <p class="font-display text-2xl sm:text-3xl font-bold text-text">A medida</p>
+                            <p class="mt-0.5 font-sans text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-text/60">Fases por planta</p>
                         </div>
                         <div>
-                            <p class="font-display text-2xl sm:text-3xl font-bold text-text">100<span class="text-primary text-lg sm:text-xl font-semibold">%</span></p>
-                            <p class="mt-0.5 font-sans text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-text/60">Trazabilidad ISO</p>
+                            <p class="font-display text-2xl sm:text-3xl font-bold text-text">1</p>
+                            <p class="mt-0.5 font-sans text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-text/60">Historial por orden</p>
                         </div>
                     </div>
                 </div>
@@ -757,8 +762,8 @@
                                 <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
                             </span>
                             <div>
-                                <p class="font-sans text-[10px] font-semibold uppercase tracking-wider text-[#F7F5F0]">Inspección Activa</p>
-                                <p class="font-sans text-[9px] font-medium tracking-wide text-[#65c4c2]/90">Lote #849-B // 100% Conforme</p>
+                                <p class="font-sans text-[10px] font-semibold uppercase tracking-wider text-[#F7F5F0]">Orden en producción</p>
+                                <p class="font-sans text-[9px] font-medium tracking-wide text-[#65c4c2]/90">OT #QT-2048 // Fase: mecanizado</p>
                             </div>
                         </div>
 
@@ -771,7 +776,7 @@
                                 <span class="soundbar w-0.5 bg-[#65c4c2] rounded-full" style="animation-delay: 0.15s;"></span>
                                 <span class="soundbar w-0.5 bg-[#65c4c2] rounded-full" style="animation-delay: 0.35s;"></span>
                             </div>
-                            <span class="font-sans text-[10px] font-semibold tracking-wider text-[#F7F5F0]/90">PRECISIÓN 99.98%</span>
+                            <span class="font-sans text-[10px] font-semibold tracking-wider text-[#F7F5F0]/90">FASES CONFIGURABLES</span>
                         </div>
 
                         <!-- Bottom Interactive Quality Cycle Controller -->
@@ -785,7 +790,7 @@
                             </div>
 
                             <p id="hero-cycle-caption" class="mb-3 font-sans text-[11px] sm:text-xs text-[#F7F5F0]/80 transition-all duration-300">
-                                <strong class="text-[#65c4c2]">01 Cotizar:</strong> Comparación técnica de ofertas, trazabilidad de requisitos y aprobación ágil.
+                                <strong class="text-[#65c4c2]">01 Solicitar:</strong> Registra el pedido del cliente y reúne descripción, cantidad, planos y documentos.
                             </p>
 
                             <div class="hero-flow-line mb-3 h-1 overflow-hidden rounded-full bg-[#F7F5F0]/15">
@@ -794,13 +799,13 @@
 
                             <div class="grid grid-cols-3 gap-2">
                                 <button type="button" data-step="0" class="hero-step-btn active group flex items-center justify-center gap-1.5 rounded-lg border border-[#65c4c2]/50 bg-primary px-2.5 py-1.5 font-sans text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-[#F7F5F0] transition-all duration-200 hover-target">
-                                    <span class="text-[#65c4c2]">01</span> Cotizar
+                                    <span class="text-[#65c4c2]">01</span> Solicitar
                                 </button>
                                 <button type="button" data-step="1" class="hero-step-btn group flex items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 font-sans text-[10px] sm:text-xs font-medium uppercase tracking-wider text-[#F7F5F0]/70 transition-all duration-200 hover:bg-white/15 hover:text-white hover-target">
-                                    <span class="text-[#65c4c2]/60">02</span> Auditar
+                                    <span class="text-[#65c4c2]/60">02</span> Producir
                                 </button>
                                 <button type="button" data-step="2" class="hero-step-btn group flex items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 font-sans text-[10px] sm:text-xs font-medium uppercase tracking-wider text-[#F7F5F0]/70 transition-all duration-200 hover:bg-white/15 hover:text-white hover-target">
-                                    <span class="text-[#65c4c2]/60">03</span> Mejorar
+                                    <span class="text-[#65c4c2]/60">03</span> Inspeccionar
                                 </button>
                             </div>
                         </div>
@@ -815,56 +820,56 @@
             <div class="hero-marquee-bar mt-14 sm:mt-16 w-full overflow-hidden border-y border-text/10 bg-surface/70 py-3 backdrop-blur-sm">
                 <div class="marquee-container">
                     <div class="marquee-track flex gap-8 font-sans text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-text/80">
-                        <span>✦ TRAZABILIDAD EN TIEMPO REAL</span>
-                        <span>✦ AUDITORÍAS CON EVIDENCIA</span>
-                        <span>✦ CONTROL ESTADÍSTICO DE PROCESO</span>
-                        <span>✦ REDUCCIÓN DE MERMAS</span>
-                        <span>✦ GESTIÓN NORMATIVA ISO 9001</span>
-                        <span>✦ METROLOGÍA DE PRECISIÓN</span>
-                        <span>✦ MONITOREO CONTINUO</span>
-                        <span>✦ CERO DEFECTOS</span>
-                        <span>✦ TRAZABILIDAD EN TIEMPO REAL</span>
-                        <span>✦ AUDITORÍAS CON EVIDENCIA</span>
-                        <span>✦ CONTROL ESTADÍSTICO DE PROCESO</span>
-                        <span>✦ REDUCCIÓN DE MERMAS</span>
-                        <span>✦ GESTIÓN NORMATIVA ISO 9001</span>
-                        <span>✦ METROLOGÍA DE PRECISIÓN</span>
-                        <span>✦ MONITOREO CONTINUO</span>
-                        <span>✦ CERO DEFECTOS</span>
+                        <span>✦ SOLICITUDES Y PLANOS EN UNA ORDEN</span>
+                        <span>✦ COTIZACIÓN POR FASES</span>
+                        <span>✦ COLA DE TAREAS POR OPERARIO</span>
+                        <span>✦ CONTROL DE CALIDAD POR ORDEN</span>
+                        <span>✦ RETRABAJO SOLO EN LAS FASES NECESARIAS</span>
+                        <span>✦ CARGA DE TRABAJO VISIBLE</span>
+                        <span>✦ HISTORIAL HASTA EL DESPACHO</span>
+                        <span>✦ MENOS PAPELES, MÁS TRAZABILIDAD</span>
+                        <span>✦ SOLICITUDES Y PLANOS EN UNA ORDEN</span>
+                        <span>✦ COTIZACIÓN POR FASES</span>
+                        <span>✦ COLA DE TAREAS POR OPERARIO</span>
+                        <span>✦ CONTROL DE CALIDAD POR ORDEN</span>
+                        <span>✦ RETRABAJO SOLO EN LAS FASES NECESARIAS</span>
+                        <span>✦ CARGA DE TRABAJO VISIBLE</span>
+                        <span>✦ HISTORIAL HASTA EL DESPACHO</span>
+                        <span>✦ MENOS PAPELES, MÁS TRAZABILIDAD</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Statement & Industrial Certifications -->
+        <!-- Statement & Workflow Highlights -->
         <section class="py-24 sm:py-32 px-6 md:px-12 max-w-6xl mx-auto text-center relative">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/20 bg-surface/80 font-sans text-xs font-semibold uppercase tracking-widest text-primary mb-6 shadow-sm">
-                <span>[ Estándar Global de Excelencia ]</span>
+                <span>[ Un flujo conectado para cada orden ]</span>
             </div>
             <p class="font-display text-3xl sm:text-5xl lg:text-6xl font-normal leading-snug sm:leading-tight text-text/90 desc-text max-w-4xl mx-auto">
-                Una infraestructura digital creada para <span class="text-primary italic font-semibold">eliminar la incertidumbre</span>, automatizar auditorías y asegurar la conformidad en cada línea de producción.
+                De la solicitud del cliente al despacho: <span class="text-primary italic font-semibold">cada etapa y cada responsable</span> quedan conectados al historial de la orden.
             </p>
             <!-- Standards Chips -->
             <div class="mt-12 flex flex-wrap items-center justify-center gap-3 sm:gap-4 font-sans text-xs sm:text-sm">
                 <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-text/10 bg-surface/70 text-text/80 shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <strong>ISO 9001:2015</strong> Gestión de Calidad
+                    Solicitud con planos y documentos
                 </span>
                 <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-text/10 bg-surface/70 text-text/80 shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <strong>IATF 16949</strong> Automotriz
+                    Catálogo de fases configurable
                 </span>
                 <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-text/10 bg-surface/70 text-text/80 shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <strong>GMP / BPM</strong> Buenas Prácticas
+                    Tareas asignadas por operario
                 </span>
                 <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-text/10 bg-surface/70 text-text/80 shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <strong>HACCP</strong> Inocuidad
+                    Checklist de control final
                 </span>
                 <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-text/10 bg-surface/70 text-text/80 shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <strong>ASTM</strong> Metrología
+                    Historial hasta el despacho
                 </span>
             </div>
         </section>
@@ -874,126 +879,116 @@
             <div class="max-w-7xl mx-auto">
                 <div class="mb-16 grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-end">
                     <div>
-                        <p class="font-sans text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-3">[ Módulos del Ecosistema ]</p>
+                        <p class="font-sans text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-3">[ El flujo de trabajo ]</p>
                         <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-text">
-                            Ingeniería de software para plantas exigentes.
+                            Una orden conectada en cada etapa.
                         </h2>
                     </div>
                     <p class="font-sans text-base sm:text-lg text-text/70 leading-relaxed md:justify-self-end max-w-lg">
-                        Cuatro pilares modulares que sustituyen papeles y planillas dispersas por un flujo de datos trazable, seguro y auditable.
+                        Solicitudes, fases, tareas, controles y despacho comparten la misma información durante todo el recorrido del trabajo.
                     </p>
                 </div>
 
                 <!-- Bento Grid Layout -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Bento Card 1: Metrología y SPC (Span 2 cols on LG) -->
+                    <!-- Bento Card 1: Configuración del flujo -->
                     <div class="reveal-card lg:col-span-2 rounded-2xl border border-text/15 bg-white p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:border-primary/50 hover:shadow-xl relative overflow-hidden group shadow-sm">
                         <div class="relative z-10">
                             <div class="flex items-center justify-between mb-6">
-                                <span class="font-display text-xs font-bold tracking-widest text-primary uppercase">[ 01 // Metrología Digital ]</span>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-primary/10 text-primary border border-primary/25">Control Estadístico SPC</span>
+                                <span class="font-display text-xs font-bold tracking-widest text-primary uppercase">[ 01 // Configuración ]</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-primary/10 text-primary border border-primary/25">Fases a medida</span>
                             </div>
-                            <h3 class="font-display text-2xl sm:text-3xl font-bold text-text mb-3">Control Estadístico de Proceso en Vivo</h3>
+                            <h3 class="font-display text-2xl sm:text-3xl font-bold text-text mb-3">Configura el flujo de tu planta</h3>
                             <p class="font-sans text-base sm:text-lg text-text leading-relaxed max-w-2xl font-normal">
-                                Registra mediciones directas de instrumentos y sensores. Grafica curvas normales y calcula índices de capacidad (Cp y Cpk) en tiempo real para anticipar desvíos antes de generar mermas.
+                                Define un catálogo global de fases y elige cuáles necesita cada pedido. Ordena las tareas y asigna qué operarios están habilitados para ejecutarlas, sin cambiar código.
                             </p>
                         </div>
 
-                        <!-- Interactive Curve Visual Component -->
-                        <div class="mt-8 rounded-xl border border-text/15 bg-surface/50 p-5 sm:p-6 backdrop-blur-sm">
-                            <div class="flex items-center justify-between text-xs sm:text-sm font-mono mb-3 text-text font-semibold">
-                                <span>DISTRIBUCIÓN NORMAL // LOTE #849</span>
-                                <span class="text-primary font-bold">Cp: 1.67 · Cpk: 1.54 [ÓPTIMO]</span>
-                            </div>
-                            <svg class="w-full h-24 text-primary" viewBox="0 0 500 100" fill="none">
-                                <path d="M 0 95 C 150 95, 200 15, 250 15 C 300 15, 350 95, 500 95" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                                <line x1="160" y1="10" x2="160" y2="95" stroke="rgba(28,28,28,0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
-                                <line x1="340" y1="10" x2="340" y2="95" stroke="rgba(28,28,28,0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
-                                <line x1="250" y1="10" x2="250" y2="95" stroke="#0a6375" stroke-width="2"/>
-                                <text x="160" y="8" fill="#1C1C1C" font-size="11" font-weight="bold" text-anchor="middle" font-family="Inter">LIE 10.02</text>
-                                <text x="250" y="8" fill="#0a6375" font-size="11" font-weight="bold" text-anchor="middle" font-family="Inter">NOMINAL 10.05</text>
-                                <text x="340" y="8" fill="#1C1C1C" font-size="11" font-weight="bold" text-anchor="middle" font-family="Inter">LSE 10.08</text>
-                            </svg>
+                        <div class="mt-8 grid grid-cols-2 gap-3 rounded-xl border border-text/15 bg-surface/50 p-5 font-sans text-sm sm:grid-cols-4">
+                            <div class="border-l-2 border-primary pl-3"><span class="block text-[10px] font-semibold uppercase text-text/50">01</span>Solicitud</div>
+                            <div class="border-l-2 border-primary pl-3"><span class="block text-[10px] font-semibold uppercase text-text/50">02</span>Cotización</div>
+                            <div class="border-l-2 border-primary pl-3"><span class="block text-[10px] font-semibold uppercase text-text/50">03</span>Producción</div>
+                            <div class="border-l-2 border-primary pl-3"><span class="block text-[10px] font-semibold uppercase text-text/50">04</span>Calidad y despacho</div>
                         </div>
                     </div>
 
-                    <!-- Bento Card 2: Auditorías Móviles -->
+                    <!-- Bento Card 2: Ejecución de órdenes -->
                     <div class="reveal-card rounded-2xl border border-text/15 bg-white p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:border-primary/50 hover:shadow-xl shadow-sm">
                         <div>
                             <div class="flex items-center justify-between mb-6">
-                                <span class="font-display text-xs font-bold tracking-widest text-primary uppercase">[ 02 // Auditorías ]</span>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-primary/10 text-primary border border-primary/25">Móvil & Offline</span>
+                                <span class="font-display text-xs font-bold tracking-widest text-primary uppercase">[ 02 // Producción ]</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-primary/10 text-primary border border-primary/25">Móvil y tablet</span>
                             </div>
-                            <h3 class="font-display text-2xl font-bold text-text mb-3">Inspecciones en Planta</h3>
+                            <h3 class="font-display text-2xl font-bold text-text mb-3">Cada operario sabe qué sigue</h3>
                             <p class="font-sans text-base text-text leading-relaxed font-normal">
-                                Checklists digitales interactivos con evidencia fotográfica geolocalizada y firmas electrónicas con validez legal.
+                                Una vista simple reúne las tareas asignadas, sus fechas y los planos del trabajo. El operario registra cuándo empieza y termina cada fase.
                             </p>
                         </div>
                         <div class="mt-6 p-4 rounded-xl border border-text/15 bg-surface/50 space-y-3 font-sans text-sm">
                             <div class="flex items-center justify-between text-text font-medium">
-                                <span>Verificación de EPP y Seguridad</span>
-                                <span class="bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full text-xs font-bold">✓ CONFORME</span>
+                                <span>Cola de tareas asignadas</span>
+                                <span class="bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full text-xs font-bold">EN CURSO</span>
                             </div>
                             <div class="flex items-center justify-between text-text font-medium">
-                                <span>Calibración de Balanzas</span>
-                                <span class="bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full text-xs font-bold">✓ CONFORME</span>
+                                <span>Planos y documentos del pedido</span>
+                                <span class="bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full text-xs font-bold">DISPONIBLES</span>
                             </div>
                             <div class="flex items-center justify-between text-text font-medium">
-                                <span>Etiquetado de Trazabilidad</span>
-                                <span class="bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full text-xs font-bold">✓ CONFORME</span>
+                                <span>Inicio y fin de cada fase</span>
+                                <span class="bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full text-xs font-bold">REGISTRADOS</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Bento Card 3: CAPA & 8D -->
+                    <!-- Bento Card 3: Control de calidad -->
                     <div class="reveal-card rounded-2xl border border-text/15 bg-white p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:border-primary/50 hover:shadow-xl shadow-sm">
                         <div>
                             <div class="flex items-center justify-between mb-6">
-                                <span class="font-display text-xs font-bold tracking-widest text-primary uppercase">[ 03 // No Conformidades ]</span>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-primary/10 text-primary border border-primary/25">CAPA & 8D</span>
+                                <span class="font-display text-xs font-bold tracking-widest text-primary uppercase">[ 03 // Control de calidad ]</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-primary/10 text-primary border border-primary/25">Checklist por orden</span>
                             </div>
-                            <h3 class="font-display text-2xl font-bold text-text mb-3">Gestión de Causa Raíz</h3>
+                            <h3 class="font-display text-2xl font-bold text-text mb-3">Un defecto no reinicia todo el trabajo</h3>
                             <p class="font-sans text-base text-text leading-relaxed font-normal">
-                                Cierre de hallazgos mediante análisis guiado de los 5 Porqués y diagramas de Ishikawa, asignando responsables y plazos con alertas automáticas.
+                                Calidad revisa criterios técnicos y emite un veredicto. Si detecta un defecto, producción selecciona solo las fases que deben rehacerse; las aprobadas conservan su estado.
                             </p>
                         </div>
                         <div class="mt-6 flex items-center justify-between gap-1.5 text-xs font-mono font-bold text-text pt-4 border-t border-text/15">
-                            <span class="px-2.5 py-1.5 rounded-lg bg-surface border border-text/15">01 Detección</span>
+                            <span class="px-2.5 py-1.5 rounded-lg bg-surface border border-text/15">Inspección</span>
                             <span class="text-text/60">→</span>
-                            <span class="px-2.5 py-1.5 rounded-lg bg-surface border border-text/15">02 Contención</span>
+                            <span class="px-2.5 py-1.5 rounded-lg bg-surface border border-text/15">No conforme</span>
                             <span class="text-text/60">→</span>
-                            <span class="px-2.5 py-1.5 rounded-lg bg-primary text-white font-bold shadow-xs">03 Cierre</span>
+                            <span class="px-2.5 py-1.5 rounded-lg bg-primary text-white font-bold shadow-xs">Fase a rehacer</span>
                         </div>
                     </div>
 
-                    <!-- Bento Card 4: Tableros BI (Span 2 cols on LG) -->
+                    <!-- Bento Card 4: Seguimiento de órdenes -->
                     <div class="reveal-card lg:col-span-2 rounded-2xl border border-text/15 bg-white p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:border-primary/50 hover:shadow-xl shadow-sm">
                         <div>
                             <div class="flex items-center justify-between mb-6">
-                                <span class="font-display text-xs font-bold tracking-widest text-primary uppercase">[ 04 // Analítica ]</span>
-                                <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-primary/10 text-primary border border-primary/25">Reportes Ejecutivos</span>
+                                <span class="font-display text-xs font-bold tracking-widest text-primary uppercase">[ 04 // Seguimiento ]</span>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-primary/10 text-primary border border-primary/25">Vista de planta</span>
                             </div>
-                            <h3 class="font-display text-2xl sm:text-3xl font-bold text-text mb-3">Dashboards para Decisiones Directivas</h3>
+                            <h3 class="font-display text-2xl sm:text-3xl font-bold text-text mb-3">Avance e historial de cada orden</h3>
                             <p class="font-sans text-base sm:text-lg text-text leading-relaxed max-w-2xl font-normal">
-                                Reportes consolidados con un clic para auditorías de certificación externa. Observa tendencias mensuales de merma, cumplimiento por turno y tiempos de ciclo.
+                                Producción visualiza la carga del equipo y puede reasignar fases pendientes. Los tableros muestran cuellos de botella, conformidades y retrabajos por fase, sin medir el desempeño individual.
                             </p>
                         </div>
-                        <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-xl border border-text/15 bg-surface/50">
-                            <div>
-                                <p class="font-display text-2xl sm:text-3xl font-black text-primary">99.4%</p>
-                                <p class="text-xs font-sans text-text font-bold uppercase mt-1">Índice OEE</p>
+                        <div class="mt-8 grid grid-cols-2 gap-3 p-5 rounded-xl border border-text/15 bg-surface/50 sm:grid-cols-4 sm:gap-4">
+                            <div class="min-w-0">
+                                <p class="font-display text-xl sm:text-2xl font-black leading-tight text-primary break-words">01</p>
+                                <p class="mt-1 text-[10px] font-sans font-bold uppercase leading-tight text-text sm:text-xs">Historial por orden</p>
                             </div>
-                            <div>
-                                <p class="font-display text-2xl sm:text-3xl font-black text-text">-35%</p>
-                                <p class="text-xs font-sans text-text font-bold uppercase mt-1">Mermas de Línea</p>
+                            <div class="min-w-0">
+                                <p class="font-display text-xl sm:text-2xl font-black leading-tight text-text break-words">Fases</p>
+                                <p class="mt-1 text-[10px] font-sans font-bold uppercase leading-tight text-text sm:text-xs">Carga de trabajo</p>
                             </div>
-                            <div>
-                                <p class="font-display text-2xl sm:text-3xl font-black text-text">0.02%</p>
-                                <p class="text-xs font-sans text-text font-bold uppercase mt-1">Tasa de Desvío</p>
+                            <div class="min-w-0">
+                                <p class="font-display text-xl sm:text-2xl font-black leading-tight text-text break-words">OK</p>
+                                <p class="mt-1 text-[10px] font-sans font-bold uppercase leading-tight text-text sm:text-xs">Conformidad</p>
                             </div>
-                            <div>
-                                <p class="font-display text-2xl sm:text-3xl font-black text-primary">&lt; 2h</p>
-                                <p class="text-xs font-sans text-text font-bold uppercase mt-1">Respuesta CAPA</p>
+                            <div class="min-w-0">
+                                <p class="font-display text-xl sm:text-2xl font-black leading-tight text-primary break-words">Fase</p>
+                                <p class="mt-1 text-[10px] font-sans font-bold uppercase leading-tight text-text sm:text-xs">Retrabajo visible</p>
                             </div>
                         </div>
                     </div>
@@ -1001,43 +996,47 @@
             </div>
         </section>
 
-        <!-- Banda de Impacto y Métricas -->
+        <!-- Flujo compartido por roles -->
         <section class="py-24 sm:py-32 px-6 md:px-12 bg-[#081619] text-[#F7F5F0] relative overflow-hidden" id="impacto">
             <!-- Subtle Grid Pattern Background -->
             <div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: linear-gradient(rgba(101,196,194,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(101,196,194,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
             
             <div class="max-w-7xl mx-auto relative z-10">
                 <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-                    <p class="font-sans text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[#65c4c2] mb-3">[ Rendimiento Comprobado ]</p>
+                    <p class="font-sans text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[#65c4c2] mb-3">[ Un hilo, cinco roles ]</p>
                     <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F7F5F0]">
-                        Resultados medibles en planta.
+                        Cada persona ve lo que necesita para avanzar.
                     </h2>
                     <p class="font-sans text-base sm:text-lg text-[#F7F5F0]/70 mt-4 leading-relaxed">
-                        Transformamos la cultura de calidad: menos tiempo en trámites y burocracia, más precisión en la operación diaria.
+                        Comercial, producción, operarios, calidad y despacho trabajan sobre la misma orden, desde la solicitud inicial hasta la entrega.
                     </p>
                 </div>
 
-                <!-- 4 Metrics Counter Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
-                    <div class="pt-6 sm:pt-0 sm:px-6 text-center">
-                        <p class="font-display text-5xl sm:text-6xl font-black text-[#65c4c2] tracking-tight">+180k</p>
-                        <p class="font-sans text-sm font-semibold uppercase tracking-wider text-[#F7F5F0] mt-2">Muestras Auditadas</p>
-                        <p class="font-sans text-xs text-[#F7F5F0]/60 mt-1">Con trazabilidad de instrumentos</p>
+                <div class="grid grid-cols-1 gap-6 divide-y divide-white/10 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-5 lg:divide-x">
+                    <div class="pt-5 text-center sm:px-4 lg:pt-0">
+                        <p class="font-display text-2xl font-bold text-[#65c4c2]">Comercial</p>
+                        <p class="mt-2 font-sans text-sm font-semibold uppercase tracking-wider text-[#F7F5F0]">Pedido y cotización</p>
+                        <p class="mt-1 font-sans text-xs text-[#F7F5F0]/60">Carga requisitos y adjunta planos</p>
                     </div>
-                    <div class="pt-6 sm:pt-0 sm:px-6 text-center">
-                        <p class="font-display text-5xl sm:text-6xl font-black text-[#65c4c2] tracking-tight">-42%</p>
-                        <p class="font-sans text-sm font-semibold uppercase tracking-wider text-[#F7F5F0] mt-2">Tiempo de Resolución</p>
-                        <p class="font-sans text-xs text-[#F7F5F0]/60 mt-1">En hallazgos y no conformidades</p>
+                    <div class="pt-5 text-center sm:px-4 lg:pt-0">
+                        <p class="font-display text-2xl font-bold text-[#65c4c2]">Producción</p>
+                        <p class="mt-2 font-sans text-sm font-semibold uppercase tracking-wider text-[#F7F5F0]">Planifica las fases</p>
+                        <p class="mt-1 font-sans text-xs text-[#F7F5F0]/60">Organiza el flujo y la carga</p>
                     </div>
-                    <div class="pt-6 sm:pt-0 sm:px-6 text-center">
-                        <p class="font-display text-5xl sm:text-6xl font-black text-[#65c4c2] tracking-tight">100%</p>
-                        <p class="font-sans text-sm font-semibold uppercase tracking-wider text-[#F7F5F0] mt-2">Conformidad Documental</p>
-                        <p class="font-sans text-xs text-[#F7F5F0]/60 mt-1">Cero pérdida de registros físicos</p>
+                    <div class="pt-5 text-center sm:px-4 lg:pt-0">
+                        <p class="font-display text-2xl font-bold text-[#65c4c2]">Operación</p>
+                        <p class="mt-2 font-sans text-sm font-semibold uppercase tracking-wider text-[#F7F5F0]">Ejecuta las tareas</p>
+                        <p class="mt-1 font-sans text-xs text-[#F7F5F0]/60">Consulta planos y registra avances</p>
                     </div>
-                    <div class="pt-6 sm:pt-0 sm:px-6 text-center">
-                        <p class="font-display text-5xl sm:text-6xl font-black text-[#65c4c2] tracking-tight">&lt; 48h</p>
-                        <p class="font-sans text-sm font-semibold uppercase tracking-wider text-[#F7F5F0] mt-2">Puesta en Marcha</p>
-                        <p class="font-sans text-xs text-[#F7F5F0]/60 mt-1">Adopción por operarios de línea</p>
+                    <div class="pt-5 text-center sm:px-4 lg:pt-0">
+                        <p class="font-display text-2xl font-bold text-[#65c4c2]">Calidad</p>
+                        <p class="mt-2 font-sans text-sm font-semibold uppercase tracking-wider text-[#F7F5F0]">Inspecciona la pieza</p>
+                        <p class="mt-1 font-sans text-xs text-[#F7F5F0]/60">Registra criterios y veredicto</p>
+                    </div>
+                    <div class="pt-5 text-center sm:px-4 lg:pt-0">
+                        <p class="font-display text-2xl font-bold text-[#65c4c2]">Despacho</p>
+                        <p class="mt-2 font-sans text-sm font-semibold uppercase tracking-wider text-[#F7F5F0]">Confirma la entrega</p>
+                        <p class="mt-1 font-sans text-xs text-[#F7F5F0]/60">Cierra el historial de la orden</p>
                     </div>
                 </div>
             </div>
@@ -1048,10 +1047,10 @@
                 <div class="service-intro mb-16 grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-end md:gap-12">
                     <div>
                         <p class="service-eyebrow mb-4 font-sans text-sm font-medium uppercase tracking-widest text-primary">[ Qué hacemos ]</p>
-                        <h2 class="service-heading max-w-3xl font-display text-4xl font-bold leading-tight text-text md:text-6xl">De la cotización a la mejora continua.</h2>
+                        <h2 class="service-heading max-w-3xl font-display text-4xl font-bold leading-tight text-text md:text-6xl">Del pedido al despacho, sin perder el hilo.</h2>
                     </div>
                     <p class="service-summary max-w-xl font-sans text-base leading-relaxed text-text/70 md:justify-self-end md:text-lg">
-                        Herramientas para entender cómo trabaja cada proceso, detectar brechas y convertir los hallazgos en acciones concretas.
+                        Cada etapa actualiza la misma orden: documentos, fases, responsables, controles y estado de entrega.
                     </p>
                 </div>
 
@@ -1066,12 +1065,12 @@
                                         <path d="M7 5.5h12l6 6V27H7zM19 5.5v6h6M11 17h10M11 21h7" />
                                     </svg>
                                 </div>
-                                <h3 class="stage-title mb-3 font-display text-3xl font-semibold text-text md:text-4xl">Cotizaciones claras</h3>
-                                <p class="stage-copy max-w-2xl font-sans text-base leading-relaxed text-text/80 md:text-lg">Organiza solicitudes y propuestas para comparar opciones, seguir su estado y decidir con información a mano.</p>
+                                <h3 class="stage-title mb-3 font-display text-3xl font-semibold text-text md:text-4xl">Solicitud y cotización</h3>
+                                <p class="stage-copy max-w-2xl font-sans text-base leading-relaxed text-text/80 md:text-lg">Reúne los datos del pedido y sus archivos. Producción define las fases necesarias, estima tiempos y prepara la cotización.</p>
                                 <ul class="stage-details mt-8 grid gap-3 border-t border-text/15 pt-5 font-sans text-sm leading-relaxed text-text/75 sm:grid-cols-3 sm:gap-5 md:mt-10">
-                                    <li>Requisitos y especificaciones en un mismo registro</li>
-                                    <li>Comparación ordenada de propuestas</li>
-                                    <li>Estado y próximos pasos siempre claros</li>
+                                    <li>Descripción y cantidad solicitada</li>
+                                    <li>Planos y documentos adjuntos</li>
+                                    <li>Orden de trabajo tras la aprobación</li>
                                 </ul>
                             </div>
                         </article>
@@ -1085,12 +1084,12 @@
                                         <path d="M16 4 26 8v7c0 6.4-4.3 10.7-10 13-5.7-2.3-10-6.6-10-13V8zM11 16l3.2 3.2L21 12" />
                                     </svg>
                                 </div>
-                                <h3 class="stage-title mb-3 font-display text-3xl font-semibold text-text md:text-4xl">Auditorías trazables</h3>
-                                <p class="stage-copy max-w-2xl font-sans text-base leading-relaxed text-text/80 md:text-lg">Planifica revisiones, registra evidencias y deja claros los hallazgos, responsables y próximos pasos.</p>
+                                <h3 class="stage-title mb-3 font-display text-3xl font-semibold text-text md:text-4xl">Producción por fases</h3>
+                                <p class="stage-copy max-w-2xl font-sans text-base leading-relaxed text-text/80 md:text-lg">Asigna cada tarea a operarios habilitados. El equipo consulta su cola de trabajo, los planos y las fechas previstas desde el móvil o una tablet.</p>
                                 <ul class="stage-details mt-8 grid gap-3 border-t border-text/15 pt-5 font-sans text-sm leading-relaxed text-text/75 sm:grid-cols-3 sm:gap-5 md:mt-10">
-                                    <li>Listas de verificación por proceso</li>
-                                    <li>Hallazgos con evidencia y responsable</li>
-                                    <li>Seguimiento de acciones y vencimientos</li>
+                                    <li>Fases ordenadas para cada pedido</li>
+                                    <li>Inicio y fin de tarea registrados</li>
+                                    <li>Reasignación para equilibrar la carga</li>
                                 </ul>
                             </div>
                         </article>
@@ -1104,12 +1103,12 @@
                                         <path d="M5 25V7M5 25h23M9 21l6-7 5 3 8-10M22 7h6v6" />
                                     </svg>
                                 </div>
-                                <h3 class="stage-title mb-3 font-display text-3xl font-semibold text-text md:text-4xl">Mejora de procesos</h3>
-                                <p class="stage-copy max-w-2xl font-sans text-base leading-relaxed text-text/80 md:text-lg">Identifica oportunidades, prioriza acciones y observa cómo evolucionan los indicadores de calidad.</p>
+                                <h3 class="stage-title mb-3 font-display text-3xl font-semibold text-text md:text-4xl">Inspección y despacho</h3>
+                                <p class="stage-copy max-w-2xl font-sans text-base leading-relaxed text-text/80 md:text-lg">Calidad completa un checklist y emite un veredicto. Si algo falla, producción devuelve solo las fases necesarias; si está conforme, la orden pasa a despacho.</p>
                                 <ul class="stage-details mt-8 grid gap-3 border-t border-text/15 pt-5 font-sans text-sm leading-relaxed text-text/75 sm:grid-cols-3 sm:gap-5 md:mt-10">
-                                    <li>Brechas y cuellos de botella visibles</li>
-                                    <li>Acciones priorizadas por impacto</li>
-                                    <li>Indicadores para medir avances</li>
+                                    <li>Criterios técnicos por pieza</li>
+                                    <li>Retrabajo sin reiniciar todo el pedido</li>
+                                    <li>Registro de entrega y receptor</li>
                                 </ul>
                             </div>
                         </article>
@@ -1129,12 +1128,12 @@
         <section class="py-24 sm:py-32 px-6 md:px-12 bg-base border-t border-text/10" id="industrias">
             <div class="max-w-7xl mx-auto">
                 <div class="mb-16 max-w-3xl">
-                    <p class="font-sans text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-3">[ Sectores Productivos ]</p>
+                    <p class="font-sans text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-3">[ Ejemplos de fases ]</p>
                     <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-text">
-                        Adaptado a los estándares más exigentes.
+                        Un flujo que se adapta a tu planta.
                     </h2>
                     <p class="font-sans text-base sm:text-lg text-text/70 mt-4 leading-relaxed">
-                        Cada industria posee normativas específicas. QualityTrack se ajusta a los protocolos de tu sector sin fricciones.
+                        Configura un catálogo común de operaciones y arma cada orden con las fases que requiere el trabajo.
                     </p>
                 </div>
 
@@ -1142,45 +1141,45 @@
                     <div class="reveal-card rounded-2xl border border-text/10 bg-surface/50 p-6 sm:p-8 flex flex-col justify-between hover:border-primary/40 hover:shadow-lg transition-all duration-300 group">
                         <div>
                             <span class="text-3xl mb-4 block">🏭</span>
-                            <h3 class="font-display text-xl font-bold text-text mb-2 group-hover:text-primary transition-colors">Metalmecánica</h3>
+                            <h3 class="font-display text-xl font-bold text-text mb-2 group-hover:text-primary transition-colors">Corte y plegado</h3>
                             <p class="font-sans text-sm text-text/70 leading-relaxed">
-                                Control de tolerancias micrométricas, registro de coladas y control de desgaste en herramientas de corte.
+                                Asigna las tareas a operarios habilitados y comparte los planos vinculados al pedido.
                             </p>
                         </div>
-                        <span class="mt-6 text-[11px] font-semibold tracking-wider uppercase text-primary border-t border-text/10 pt-4">ISO 9001 · ASTM</span>
+                        <span class="mt-6 text-[11px] font-semibold tracking-wider uppercase text-primary border-t border-text/10 pt-4">Fase configurable</span>
                     </div>
 
                     <div class="reveal-card rounded-2xl border border-text/10 bg-surface/50 p-6 sm:p-8 flex flex-col justify-between hover:border-primary/40 hover:shadow-lg transition-all duration-300 group">
                         <div>
-                            <span class="text-3xl mb-4 block">🍎</span>
-                            <h3 class="font-display text-xl font-bold text-text mb-2 group-hover:text-primary transition-colors">Alimentos & Bebidas</h3>
+                            <span class="text-3xl mb-4 block">⚙️</span>
+                            <h3 class="font-display text-xl font-bold text-text mb-2 group-hover:text-primary transition-colors">Soldadura y ensamble</h3>
                             <p class="font-sans text-sm text-text/70 leading-relaxed">
-                                Puntos Críticos de Control (PCC), registro digital de temperaturas y trazabilidad de alérgenos.
+                                Ordena las etapas por trabajo y registra inicio, término y vencimiento de cada tarea.
                             </p>
                         </div>
-                        <span class="mt-6 text-[11px] font-semibold tracking-wider uppercase text-primary border-t border-text/10 pt-4">HACCP · BPM</span>
+                        <span class="mt-6 text-[11px] font-semibold tracking-wider uppercase text-primary border-t border-text/10 pt-4">Avance por etapa</span>
                     </div>
 
                     <div class="reveal-card rounded-2xl border border-text/10 bg-surface/50 p-6 sm:p-8 flex flex-col justify-between hover:border-primary/40 hover:shadow-lg transition-all duration-300 group">
                         <div>
-                            <span class="text-3xl mb-4 block">🧪</span>
-                            <h3 class="font-display text-xl font-bold text-text mb-2 group-hover:text-primary transition-colors">Farmacéutica</h3>
+                            <span class="text-3xl mb-4 block">🔩</span>
+                            <h3 class="font-display text-xl font-bold text-text mb-2 group-hover:text-primary transition-colors">Matricería</h3>
                             <p class="font-sans text-sm text-text/70 leading-relaxed">
-                                Integridad de datos inmutable, registros de batch y validación de limpiezas bajo estándares estrictos.
+                                Define qué fases se rehacen ante un defecto y conserva el estado de las etapas aprobadas.
                             </p>
                         </div>
-                        <span class="mt-6 text-[11px] font-semibold tracking-wider uppercase text-primary border-t border-text/10 pt-4">GMP · 21 CFR Part 11</span>
+                        <span class="mt-6 text-[11px] font-semibold tracking-wider uppercase text-primary border-t border-text/10 pt-4">Retrabajo selectivo</span>
                     </div>
 
                     <div class="reveal-card rounded-2xl border border-text/10 bg-surface/50 p-6 sm:p-8 flex flex-col justify-between hover:border-primary/40 hover:shadow-lg transition-all duration-300 group">
                         <div>
-                            <span class="text-3xl mb-4 block">🚗</span>
-                            <h3 class="font-display text-xl font-bold text-text mb-2 group-hover:text-primary transition-colors">Automotriz</h3>
+                            <span class="text-3xl mb-4 block">🏭</span>
+                            <h3 class="font-display text-xl font-bold text-text mb-2 group-hover:text-primary transition-colors">Fabricación de válvulas</h3>
                             <p class="font-sans text-sm text-text/70 leading-relaxed">
-                                Homologación de proveedores, auditorías por capas (LPA) y control de no conformidades con ciclo 8D.
+                                Consulta el recorrido de cada orden, desde los requisitos iniciales hasta la persona que recibe el producto.
                             </p>
                         </div>
-                        <span class="mt-6 text-[11px] font-semibold tracking-wider uppercase text-primary border-t border-text/10 pt-4">IATF 16949 · VDA</span>
+                        <span class="mt-6 text-[11px] font-semibold tracking-wider uppercase text-primary border-t border-text/10 pt-4">Historial de la orden</span>
                     </div>
                 </div>
             </div>
@@ -1208,7 +1207,7 @@
                         Preguntas Frecuentes
                     </h2>
                     <p class="font-sans text-base sm:text-lg text-text/70 mt-3">
-                        Todo lo que necesitas saber sobre la plataforma QualityTrack.
+                        Cómo se mueve una orden de trabajo en QualityTrack.
                     </p>
                 </div>
 
@@ -1218,12 +1217,12 @@
                         <button type="button" class="faq-toggle w-full flex items-center justify-between text-left font-display text-lg sm:text-xl font-bold text-text hover-target group">
                             <span class="flex items-center gap-3">
                                 <span class="font-mono text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full shrink-0">01</span>
-                                <span>¿Cómo se integra QualityTrack con el ERP o MES de nuestra planta?</span>
+                                <span>¿Podemos adaptar las fases a nuestra forma de producir?</span>
                             </span>
                             <span class="faq-icon text-primary text-2xl font-bold transition-transform duration-300 ml-4 shrink-0">−</span>
                         </button>
                         <div class="faq-content mt-4 pt-4 border-t border-text/10 font-sans text-base text-text leading-relaxed font-normal">
-                            QualityTrack dispone de APIs REST abiertas y conectores listos para sincronizarse con sistemas ERP como SAP, Oracle o desarrollos propietarios. Esto permite importar órdenes de producción y exportar evidencias y resultados de auditoría en tiempo real sin duplicar tareas manuales.
+                            Sí. Producción configura un catálogo global de fases y selecciona, ordena y asigna las etapas necesarias para cada pedido, de acuerdo con el flujo de la planta.
                         </div>
                     </div>
 
@@ -1231,12 +1230,12 @@
                         <button type="button" class="faq-toggle w-full flex items-center justify-between text-left font-display text-lg sm:text-xl font-bold text-text hover-target group">
                             <span class="flex items-center gap-3">
                                 <span class="font-mono text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full shrink-0">02</span>
-                                <span>¿Cumple con los requisitos de evidencia digital de la norma ISO 9001?</span>
+                                <span>¿Cómo pasa una solicitud a ser una orden de trabajo?</span>
                             </span>
                             <span class="faq-icon text-primary text-2xl font-bold transition-transform duration-300 ml-4 shrink-0">−</span>
                         </button>
                         <div class="faq-content mt-4 pt-4 border-t border-text/10 font-sans text-base text-text leading-relaxed font-normal">
-                            Totalmente. Cada registro, checklist y fotografía tomada en campo cuenta con sellos de tiempo inmutables, geolocalización de planta y firma electrónica del auditor, cumpliendo íntegramente con los requisitos de información documentada de las normas ISO 9001, HACCP y GMP.
+                            Comercial registra la descripción y cantidad solicitada, y adjunta planos y documentos. Producción define las fases, estima tiempos y precio; cuando el cliente aprueba la cotización, se genera la orden de trabajo.
                         </div>
                     </div>
 
@@ -1244,12 +1243,12 @@
                         <button type="button" class="faq-toggle w-full flex items-center justify-between text-left font-display text-lg sm:text-xl font-bold text-text hover-target group">
                             <span class="flex items-center gap-3">
                                 <span class="font-mono text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full shrink-0">03</span>
-                                <span>¿Funciona sin conexión a internet en áreas aisladas de la fábrica?</span>
+                                <span>¿Qué ocurre si calidad encuentra un defecto?</span>
                             </span>
                             <span class="faq-icon text-primary text-2xl font-bold transition-transform duration-300 ml-4 shrink-0">−</span>
                         </button>
                         <div class="faq-content mt-4 pt-4 border-t border-text/10 font-sans text-base text-text leading-relaxed font-normal">
-                            Sí. La aplicación móvil cuenta con modo offline nativo: los operarios pueden completar listas de verificación, registrar medidas y tomar fotografías en zonas de almacén o plantas subterráneas sin cobertura; la información se sincroniza automáticamente al restablecerse la señal.
+                            Calidad registra el defecto en el checklist y la orden vuelve a producción. El responsable elige las fases puntuales que deben repetirse; las que ya estaban conformes mantienen su estado.
                         </div>
                     </div>
 
@@ -1257,12 +1256,12 @@
                         <button type="button" class="faq-toggle w-full flex items-center justify-between text-left font-display text-lg sm:text-xl font-bold text-text hover-target group">
                             <span class="flex items-center gap-3">
                                 <span class="font-mono text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full shrink-0">04</span>
-                                <span>¿Cuánto tiempo toma capacitar al personal de planta?</span>
+                                <span>¿Qué información muestran los tableros?</span>
                             </span>
                             <span class="faq-icon text-primary text-2xl font-bold transition-transform duration-300 ml-4 shrink-0">−</span>
                         </button>
                         <div class="faq-content mt-4 pt-4 border-t border-text/10 font-sans text-base text-text leading-relaxed font-normal">
-                            Gracias a su diseño centrado en el operario, la curva de aprendizaje es prácticamente nula. En promedio, los inspectores y supervisores aprenden a operar la plataforma en menos de 48 horas mediante sesiones breves y prácticas guiadas en pantalla táctil o tablets industriales.
+                            Permiten ver cuellos de botella de la planta, porcentaje de conformidad y retrabajos por fase. Son indicadores generales del proceso, no mediciones del desempeño individual de cada operario.
                         </div>
                     </div>
                 </div>
@@ -1276,20 +1275,20 @@
                 <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-primary/20 blur-3xl pointer-events-none"></div>
                 
                 <span class="inline-block px-3.5 py-1 rounded-full border border-[#65c4c2]/30 bg-white/5 font-sans text-xs font-semibold uppercase tracking-widest text-[#65c4c2] mb-6">
-                    Inicia la Transformación Digital
+                    Del pedido a la entrega, en un solo flujo
                 </span>
                 <h2 class="font-display text-3xl sm:text-5xl font-bold tracking-tight mb-4">
-                    Eleva el estándar de calidad en tu planta.
+                    Dale seguimiento a cada orden de trabajo.
                 </h2>
                 <p class="font-sans text-base sm:text-lg text-[#F7F5F0]/70 max-w-2xl mx-auto mb-8 leading-relaxed">
-                    Sustituye la burocracia por evidencia digital en tiempo real. Descubre cómo QualityTrack se adapta a tus líneas de producción.
+                    Reúne solicitudes, planos, fases, inspecciones y despacho en el historial de cada trabajo.
                 </p>
                 <div class="flex flex-wrap items-center justify-center gap-4">
                     <a href="#servicios" class="px-8 py-4 rounded-full bg-primary text-[#F7F5F0] font-sans text-xs sm:text-sm font-semibold uppercase tracking-wider hover:bg-[#084d5b] transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-primary/40 hover-target">
-                        Conocer los Servicios
+                        Ver el flujo de trabajo
                     </a>
                     <a href="#proyecto" class="px-8 py-4 rounded-full border border-white/20 text-[#F7F5F0] font-sans text-xs sm:text-sm font-semibold uppercase tracking-wider hover:bg-white/10 transition-all duration-300 hover-target">
-                        Explorar Plataforma →
+                        Conocer QualityTrack →
                     </a>
                 </div>
             </div>
@@ -1297,10 +1296,10 @@
 
         <footer id="proyecto" class="py-40 px-6 md:px-12 flex flex-col items-center justify-center relative bg-surface overflow-hidden">
             <a href="#" class="group hover-target flex flex-col items-center justify-center relative z-10">
-                <span class="font-sans text-sm tracking-widest uppercase text-primary mb-6 block font-medium text-center">Explora la Plataforma</span>
+                <span class="font-sans text-sm tracking-widest uppercase text-primary mb-6 block font-medium text-center">Gestión de órdenes de trabajo</span>
                 <div class="flex items-center gap-6">
                     <h2 class="font-display text-4xl md:text-7xl lg:text-[7vw] font-black uppercase tracking-tighter text-text group-hover:text-primary transition-colors duration-500 text-center">
-                        Ir al Proyecto
+                        QualityTrack
                     </h2>
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 md:w-20 md:h-20 text-primary transform group-hover:translate-x-4 group-hover:-translate-y-4 transition-transform duration-500 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -1310,46 +1309,7 @@
         </footer>
     </main>
 
-    <div id="ai-chat-widget" class="fixed bottom-8 right-8 z-[100] flex flex-col items-end pointer-events-none">
-        <!-- Chat Window -->
-        <div id="ai-chat-window" class="w-[350px] md:w-[400px] h-[500px] bg-base border border-text/10 rounded-2xl shadow-2xl flex flex-col mb-4 pointer-events-auto transform translate-y-10 opacity-0 transition-all duration-300 origin-bottom-right" style="visibility: hidden;">
-            <!-- Header -->
-            <div class="p-4 bg-primary text-base rounded-t-2xl flex justify-between items-center">
-                <div class="flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                    <h3 class="font-sans font-semibold text-sm tracking-wide">Asistente QualityTrack</h3>
-                </div>
-                <button id="close-chat-btn" class="text-base/80 hover:text-base transition-colors cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            
-            <!-- Messages Container -->
-            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 flex flex-col gap-4 bg-surface/50" style="scrollbar-width: thin; scrollbar-color: #0a6375 transparent;">
-                <div class="flex flex-col gap-1 items-start">
-                    <div class="bg-base border border-text/10 rounded-2xl rounded-tl-sm px-4 py-3 text-sm text-text max-w-[85%] shadow-sm font-sans leading-relaxed">
-                        ¡Hola! Soy el asistente de IA de QualityTrack. ¿En qué te puedo ayudar sobre gestión de calidad industrial o normativas?
-                    </div>
-                </div>
-            </div>
-
-            <!-- Input Area -->
-            <div class="p-4 bg-base rounded-b-2xl border-t border-text/10">
-                <form id="chat-form" class="flex gap-2">
-                    <input type="text" id="chat-input" placeholder="Escribe tu consulta..." class="flex-1 bg-surface border border-text/10 rounded-full px-4 py-2 text-sm text-text focus:outline-none focus:border-primary/50 transition-colors" autocomplete="off">
-                    <button type="submit" id="chat-submit" class="bg-primary text-base w-10 h-10 rounded-full hover:bg-primary/90 transition-colors flex items-center justify-center shrink-0 disabled:opacity-50 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                        </svg>
-                    </button>
-                </form>
-            </div>
-        </div>
-
+    <div class="fixed bottom-8 right-8 z-[100] flex flex-col items-end pointer-events-none">
         <!-- Botón Volver Arriba con animación sutil -->
         <button id="back-to-top-btn" 
                 class="w-12 h-12 mb-3 rounded-full bg-white border border-primary/30 text-primary shadow-lg shadow-primary/15 flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary hover:shadow-xl hover:shadow-primary/30 hover:scale-110 active:scale-95 opacity-0 translate-y-3 pointer-events-none hover-target group cursor-pointer"
@@ -1360,14 +1320,6 @@
             </svg>
         </button>
 
-        <button id="toggle-chat-btn" class="w-14 h-14 bg-primary text-base rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform hover-target pointer-events-auto group">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden group-hover:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-            </svg>
-        </button>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -1377,13 +1329,13 @@
     <script>
         const teamData = [
             { name: "Luis Feliz", role: "Full Stack Developer", img: "imagenes/luis.jpg", linkedin: "https://www.linkedin.com/in/luis-antonio-feliz/" },
-            { name: "Felipe Arroyo", role: "Full Stack Developer", img: "imagenes/felipe.png", linkedin: "https://www.linkedin.com/in/feli-arroyo/" },
+            { name: "Felipe Arroyo", role: "Backend Developer", img: "imagenes/felipe.png", linkedin: "https://www.linkedin.com/in/feli-arroyo/" },
             { name: "Mel Zarate", role: "Project Manager", img: "imagenes/mel.png", linkedin: "https://www.linkedin.com/in/melzarate/" },
             { name: "Alfredo Agüero Ortiz", role: "Frontend Developer", img: "imagenes/alfredo.jpg", linkedin: "https://www.linkedin.com/in/alfredoagortiz/" },
             { name: "Abel Fucili", role: "Backend Developer", img: "imagenes/abel.png", linkedin: "https://www.linkedin.com/in/abel-fucili-dev/" },
             { name: "Alicia Zuñega", role: "Frontend Developer", img: "imagenes/ali-3.png", linkedin: "https://www.linkedin.com/in/alicialzunegamza/" },
             { name: "Maria Chiribao", role: "QA Tester", img: "imagenes/maria.png", linkedin: "https://www.linkedin.com/in/maria-chiribao/" },
-            { name: "Lisandro Sánchez Morales", role: "Backend Developer", img: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=800&q=80", linkedin: "https://www.linkedin.com/in/lisandro-s%C3%A1nchez-morales-49914b343/?locale=es" },
+            { name: "Lisandro Sánchez Morales", role: "Backend Developer", img: "imagenes/8E276BBB-7037-49FA-B1D8-D06B75F71E9B.jpg" },
             { name: "Hazael Degante", role: "UX/UI Designer", img: "imagenes/hazael.png", linkedin: "https://www.linkedin.com/in/hazaelld/" }
         ];
 
@@ -1396,7 +1348,7 @@
             row.setAttribute('data-name', member.name);
             const profileAction = member.linkedin
                 ? `<a href="${member.linkedin}" target="_blank" rel="noopener noreferrer" class="team-profile-link hover-target" aria-label="Ver perfil de LinkedIn de ${member.name}">Ver perfil<svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12 12 4M5 4h7v7"/></svg></a>`
-                : '<span class="team-profile-pending" aria-label="Enlace de LinkedIn pendiente">LinkedIn pendiente</span>';
+                : '';
             row.innerHTML = `
                 <div class="row-bg"></div>
                 <div class="flex items-baseline gap-4 md:gap-8 z-10 relative px-4 w-full md:w-auto">
@@ -1589,11 +1541,12 @@
 
             // === THREE.JS HOLOGRAPHIC QUALITY CORE ===
             function initHero3D() {
-                const container = document.getElementById('hero-3d-container');
+                const heroContainer = document.getElementById('hero-3d-container');
+                let container = document.getElementById('loader-3d-container') || heroContainer;
                 if (!container) return;
 
                 if (typeof THREE === 'undefined') {
-                    initFallbackCanvas(container);
+                    initFallbackCanvas(container, heroContainer);
                     return;
                 }
 
@@ -1704,7 +1657,8 @@
                     let speedMult = 1;
 
                     // Resize
-                    window.addEventListener('resize', () => {
+                    function resizeRenderer() {
+                        if (!container || !container.isConnected) return;
                         const newW = container.clientWidth;
                         const newH = container.clientHeight;
                         if (newW && newH) {
@@ -1712,7 +1666,16 @@
                             camera.updateProjectionMatrix();
                             renderer.setSize(newW, newH);
                         }
-                    });
+                    }
+
+                    window.addEventListener('resize', resizeRenderer);
+
+                    window.moveHeroCoreToCard = function() {
+                        if (!heroContainer || container === heroContainer) return;
+                        heroContainer.appendChild(renderer.domElement);
+                        container = heroContainer;
+                        resizeRenderer();
+                    };
 
                     // Trigger burst on button clicks
                     window.triggerCoreBurst = function(colorHex = 0x65c4c2) {
@@ -1730,6 +1693,11 @@
 
                     let clock = new THREE.Clock();
                     function renderLoop() {
+                        if (!container.isConnected) {
+                            window.removeEventListener('resize', resizeRenderer);
+                            renderer.dispose();
+                            return;
+                        }
                         requestAnimationFrame(renderLoop);
                         const time = clock.getElapsedTime();
 
@@ -1753,18 +1721,33 @@
 
                 } catch (err) {
                     console.warn('WebGL init error, falling back to 2D canvas', err);
-                    initFallbackCanvas(container);
+                    initFallbackCanvas(container, heroContainer);
                 }
             }
 
             // Fallback 2D Canvas if WebGL is unsupported
-            function initFallbackCanvas(container) {
+            function initFallbackCanvas(container, heroContainer) {
                 const canvas = document.createElement('canvas');
                 canvas.className = 'absolute inset-0 w-full h-full pointer-events-none';
                 container.appendChild(canvas);
                 const ctx = canvas.getContext('2d');
                 let w = canvas.width = container.clientWidth || 400;
                 let h = canvas.height = container.clientHeight || 400;
+
+                function resizeCanvas() {
+                    if (!container || !container.isConnected) return;
+                    w = canvas.width = container.clientWidth || 400;
+                    h = canvas.height = container.clientHeight || 400;
+                }
+
+                window.addEventListener('resize', resizeCanvas);
+
+                window.moveHeroCoreToCard = function() {
+                    if (!heroContainer || container === heroContainer) return;
+                    heroContainer.appendChild(canvas);
+                    container = heroContainer;
+                    resizeCanvas();
+                };
 
                 const dots = Array.from({ length: 60 }, () => ({
                     angle: Math.random() * Math.PI * 2,
@@ -1774,6 +1757,10 @@
                 }));
 
                 function draw() {
+                    if (!canvas.isConnected) {
+                        window.removeEventListener('resize', resizeCanvas);
+                        return;
+                    }
                     ctx.clearRect(0, 0, w, h);
                     const cx = w / 2, cy = h / 2;
                     ctx.strokeStyle = 'rgba(101, 196, 194, 0.2)';
@@ -1808,19 +1795,19 @@
                     {
                         num: "01 / 03",
                         progress: "scaleX(0.33)",
-                        html: '<strong class="text-[#65c4c2]">01 Cotizar:</strong> Comparación técnica de ofertas, trazabilidad de requisitos y aprobación ágil.',
+                        html: '<strong class="text-[#65c4c2]">01 Solicitar:</strong> Reúne los datos del pedido, la cantidad y los planos en un expediente digital.',
                         color: 0x65c4c2
                     },
                     {
                         num: "02 / 03",
                         progress: "scaleX(0.66)",
-                        html: '<strong class="text-[#65c4c2]">02 Auditar:</strong> Checklists digitales en planta, registro fotográfico y reportes de no conformidad en vivo.',
+                        html: '<strong class="text-[#65c4c2]">02 Producir:</strong> Configura las fases del trabajo, asigna responsables y sigue el avance de cada tarea.',
                         color: 0x0a6375
                     },
                     {
                         num: "03 / 03",
                         progress: "scaleX(1.0)",
-                        html: '<strong class="text-[#65c4c2]">03 Mejorar:</strong> Indicadores KPI en tiempo real, análisis de causa raíz y planes de acción preventivos.',
+                        html: '<strong class="text-[#65c4c2]">03 Inspeccionar:</strong> Registra el veredicto de calidad y devuelve solo las fases que necesitan retrabajo.',
                         color: 0x38bdf8
                     }
                 ];
@@ -2099,156 +2086,6 @@
             });
         }
 
-        const chatWidget = document.getElementById('ai-chat-widget');
-        const chatWindow = document.getElementById('ai-chat-window');
-        const toggleBtn = document.getElementById('toggle-chat-btn');
-        const closeBtn = document.getElementById('close-chat-btn');
-        const chatForm = document.getElementById('chat-form');
-        const chatInput = document.getElementById('chat-input');
-        const chatMessages = document.getElementById('chat-messages');
-        const chatSubmit = document.getElementById('chat-submit');
-
-        let isChatOpen = false;
-        let chatHistory = [];
-        
-        const systemPrompt = "Eres un asistente de Inteligencia Artificial experto para QualityTrack, un moderno Sistema de Gestión de Calidad Industrial. Tu objetivo es ayudar a los visitantes de la landing page proporcionando información concisa, profesional y útil sobre control de calidad, normativas industriales (como ISO 9001), y cómo una plataforma digital como QualityTrack puede optimizar estos procesos. Mantén un tono cálido pero corporativo, siempre en español. Sé breve en tus respuestas (máximo 2-3 párrafos cortos). No ofrezcas precios, ya que están en fase de desarrollo.";
-
-        function toggleChat() {
-            isChatOpen = !isChatOpen;
-            if (isChatOpen) {
-                chatWindow.style.visibility = 'visible';
-                gsap.to(chatWindow, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" });
-                chatInput.focus();
-                
-                // Ocultar cursor custom en chat
-                document.querySelector('.cursor-dot').style.display = 'none';
-                document.body.style.cursor = 'auto';
-            } else {
-                gsap.to(chatWindow, {
-                    y: 40, opacity: 0, duration: 0.3, ease: "power2.in",
-                    onComplete: () => { chatWindow.style.visibility = 'hidden'; }
-                });
-                
-                // Mostrar cursor custom al cerrar chat
-                document.querySelector('.cursor-dot').style.display = 'block';
-                document.body.style.cursor = 'none';
-            }
-        }
-
-        toggleBtn.addEventListener('click', toggleChat);
-        closeBtn.addEventListener('click', toggleChat);
-
-        function appendMessage(text, isUser = false) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `flex flex-col gap-1 ${isUser ? 'items-end' : 'items-start'}`;
-            
-            const bubble = document.createElement('div');
-            bubble.className = `px-4 py-3 text-sm font-sans max-w-[85%] shadow-sm leading-relaxed ${
-                isUser ? 'bg-primary text-base rounded-2xl rounded-tr-sm' : 'bg-base border border-text/10 text-text rounded-2xl rounded-tl-sm'
-            }`;
-            
-            // Basic markdown formatting for bold text
-            let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            formattedText = formattedText.replace(/\n/g, '<br>');
-            bubble.innerHTML = formattedText;
-            
-            msgDiv.appendChild(bubble);
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-            const indicator = document.createElement('div');
-            indicator.id = 'typing-indicator';
-            indicator.className = 'flex flex-col gap-1 items-start';
-            indicator.innerHTML = `
-                <div class="bg-base border border-text/10 rounded-2xl rounded-tl-sm px-4 py-4 max-w-[85%] shadow-sm flex gap-1.5 items-center">
-                    <div class="w-1.5 h-1.5 bg-text/40 rounded-full animate-bounce" style="animation-delay: 0ms;"></div>
-                    <div class="w-1.5 h-1.5 bg-text/40 rounded-full animate-bounce" style="animation-delay: 150ms;"></div>
-                    <div class="w-1.5 h-1.5 bg-text/40 rounded-full animate-bounce" style="animation-delay: 300ms;"></div>
-                </div>
-            `;
-            chatMessages.appendChild(indicator);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function removeTypingIndicator() {
-            const indicator = document.getElementById('typing-indicator');
-            if (indicator) indicator.remove();
-        }
-
-        async function fetchWithRetry(url, options, retries = 3, delay = 1000) {
-            try {
-                const response = await fetch(url, options);
-                if (!response.ok) {
-                    if (response.status === 429 && retries > 0) {
-                        await new Promise(res => setTimeout(res, delay));
-                        return fetchWithRetry(url, options, retries - 1, delay * 2);
-                    }
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response;
-            } catch (error) {
-                if (retries > 0) {
-                    await new Promise(res => setTimeout(res, delay));
-                    return fetchWithRetry(url, options, retries - 1, delay * 2);
-                }
-                throw error;
-            }
-        }
-
-        chatForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const text = chatInput.value.trim();
-            if (!text) return;
-
-            appendMessage(text, true);
-            chatInput.value = '';
-            chatSubmit.disabled = true;
-            chatSubmit.classList.add('opacity-50');
-            showTypingIndicator();
-
-            const apiUrl = '/api/chat';
-            
-            const apiHistory = chatHistory.map(msg => ({
-                role: msg.role,
-                parts: [{ text: msg.text }]
-            }));
-            
-            apiHistory.push({ role: "user", parts: [{ text: text }] });
-
-            const payload = {
-                contents: apiHistory,
-                systemInstruction: { parts: [{ text: systemPrompt }] }
-            };
-
-            try {
-                const response = await fetchWithRetry(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                
-                const result = await response.json();
-                
-                if (result.candidates && result.candidates.length > 0) {
-                    const aiResponseText = result.candidates[0].content.parts[0].text;
-                    chatHistory.push({ role: "user", text: text });
-                    chatHistory.push({ role: "model", text: aiResponseText });
-                    removeTypingIndicator();
-                    appendMessage(aiResponseText, false);
-                } else {
-                    throw new Error("No candidates in response");
-                }
-            } catch (error) {
-                removeTypingIndicator();
-                appendMessage("Lo siento, estoy teniendo problemas para conectarme en este momento. Por favor, intenta de nuevo más tarde.", false);
-            } finally {
-                chatSubmit.disabled = false;
-                chatSubmit.classList.remove('opacity-50');
-                chatInput.focus();
-            }
-        });
     </script>
 </body>
 </html>
