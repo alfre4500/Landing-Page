@@ -1368,6 +1368,7 @@
         const revealImg = document.querySelector('.hover-reveal-img');
         let pointerX = 0;
         let pointerY = 0;
+        let activeTeamRow = null;
 
         function hideTeamReveal(immediate = false) {
             gsap.killTweensOf(revealContainer, "opacity,scale,rotation");
@@ -1408,41 +1409,59 @@
             el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
         });
 
-        document.querySelectorAll('.team-row').forEach(row => {
-            row.addEventListener('mouseenter', () => {
-                const imgUrl = row.getAttribute('data-image');
-                revealImg.src = imgUrl;
-                revealImg.alt = `Foto de ${row.getAttribute('data-name')}`;
-                gsap.killTweensOf(revealContainer, "opacity,scale,rotation");
-                
-                revealImg.onerror = function() {
-                    this.onerror = null;
-                    this.src = `https://placehold.co/300x380/EAE6DB/0a6375?text=Foto`;
-                };
-                
-                gsap.to(revealContainer, {
-                    opacity: 1,
-                    scale: 1,
-                    rotation: 0,
-                    duration: 0.5,
-                    ease: "back.out(1.2)"
-                });
-                
-                gsap.fromTo(revealImg, 
-                    { scale: 1.3 }, 
-                    { scale: 1, duration: 0.7, ease: "power2.out" }
-                );
-            });
-            
-            row.addEventListener('mouseleave', () => {
-                hideTeamReveal();
+        function showTeamReveal(row) {
+            const imgUrl = row.getAttribute('data-image');
+            revealImg.src = imgUrl;
+            revealImg.alt = `Foto de ${row.getAttribute('data-name')}`;
+
+            revealImg.onerror = function() {
+                this.onerror = null;
+                this.src = `https://placehold.co/300x380/EAE6DB/0a6375?text=Foto`;
+            };
+
+            gsap.killTweensOf(revealContainer, "opacity,scale,rotation");
+            gsap.to(revealContainer, {
+                opacity: 1,
+                scale: 1,
+                rotation: 0,
+                duration: 0.5,
+                ease: "back.out(1.2)"
             });
 
+            gsap.fromTo(revealImg,
+                { scale: 1.3 },
+                { scale: 1, duration: 0.7, ease: "power2.out" }
+            );
+        }
+
+        teamContainer.addEventListener('pointerover', (event) => {
+            const row = event.target.closest('.team-row');
+            if (!row) return;
+
+            const isNewRow = row !== activeTeamRow;
+            activeTeamRow = row;
+            if (isNewRow || Number(gsap.getProperty(revealContainer, 'opacity')) === 0) {
+                showTeamReveal(row);
+            }
+        });
+
+        teamContainer.addEventListener('pointerout', (event) => {
+            const row = event.target.closest('.team-row');
+            const nextRow = event.relatedTarget instanceof Element
+                ? event.relatedTarget.closest('.team-row')
+                : null;
+
+            if (row && row !== nextRow && row === activeTeamRow) {
+                activeTeamRow = null;
+                hideTeamReveal();
+            }
+        });
+
+        document.querySelectorAll('.team-row').forEach(row => {
             const profileLink = row.querySelector('.team-profile-link');
             if (profileLink) {
                 profileLink.addEventListener('mouseenter', () => {
                     cursor.classList.add('profile-active');
-                    hideTeamReveal(true);
                     const linkBounds = profileLink.getBoundingClientRect();
                     gsap.to(cursor, {
                         left: linkBounds.left + linkBounds.width / 2,
