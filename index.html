@@ -193,6 +193,49 @@
             transform: translate(2px, -2px);
         }
 
+        .team-mobile-photo-action,
+        .team-mobile-photo {
+            display: none;
+        }
+
+        @media (max-width: 767px) {
+            .hover-reveal-container {
+                display: none;
+            }
+
+            .team-mobile-photo-action {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+                padding: 0.25rem 1rem 0;
+            }
+
+            .team-mobile-photo-toggle {
+                padding: 0.5rem 0;
+                color: #0a6375;
+                font-family: 'Inter', sans-serif;
+                font-size: 0.625rem;
+                font-weight: 600;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+            }
+
+            .team-row.is-photo-open .team-mobile-photo {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+                padding: 0.75rem 1rem 0;
+                scroll-margin-block: 1rem;
+            }
+
+            .team-mobile-photo img {
+                width: min(44vw, 180px);
+                aspect-ratio: 3 / 4;
+                border-radius: 4px;
+                object-fit: cover;
+            }
+        }
+
         .team-profile-pending {
             color: rgba(28, 28, 28, 0.42);
             font-family: 'Inter', sans-serif;
@@ -1359,6 +1402,12 @@
                     <span class="role font-sans text-sm md:text-base tracking-wider text-text/60 uppercase font-medium">${member.role}</span>
                     ${profileAction}
                 </div>
+                <div class="team-mobile-photo-action z-10 relative">
+                    <button type="button" class="team-mobile-photo-toggle" aria-expanded="false" aria-controls="team-photo-${index}">Ver foto</button>
+                </div>
+                <div id="team-photo-${index}" class="team-mobile-photo z-10 relative" aria-hidden="true">
+                    <img src="${member.img}" alt="Foto de ${member.name}" loading="lazy">
+                </div>
             `;
             teamContainer.appendChild(row);
         });
@@ -1454,6 +1503,27 @@
             if (row && row !== nextRow && row === activeTeamRow) {
                 activeTeamRow = null;
                 hideTeamReveal();
+            }
+        });
+
+        teamContainer.addEventListener('click', (event) => {
+            const toggle = event.target.closest('.team-mobile-photo-toggle');
+            if (!toggle || !window.matchMedia('(max-width: 767px)').matches) return;
+
+            const row = toggle.closest('.team-row');
+            const shouldOpen = !row.classList.contains('is-photo-open');
+            teamContainer.querySelectorAll('.team-row.is-photo-open').forEach((openRow) => {
+                openRow.classList.remove('is-photo-open');
+                openRow.querySelector('.team-mobile-photo-toggle').setAttribute('aria-expanded', 'false');
+                openRow.querySelector('.team-mobile-photo').setAttribute('aria-hidden', 'true');
+            });
+
+            if (shouldOpen) {
+                row.classList.add('is-photo-open');
+                toggle.setAttribute('aria-expanded', 'true');
+                const photo = row.querySelector('.team-mobile-photo');
+                photo.setAttribute('aria-hidden', 'false');
+                photo.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
             }
         });
 
